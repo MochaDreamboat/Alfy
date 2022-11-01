@@ -10,6 +10,19 @@ def rectangle(turt, edge=100):
         turt.forward(edge)
         turt.left(90)
 
+
+# Triangle Drawing
+hexagon = turtle.Turtle()
+
+for x in range(6):
+    triangle(hexagon)
+    hexagon.left(60)
+
+hexagon.clear()
+hexagon.hideturtle()
+
+# Mouse Drawing
+
 tri = turtle.Turtle()
 tri.color('red')
 
