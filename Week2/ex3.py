@@ -39,6 +39,9 @@ def check_monotonic_sequence(arr):
         else:
             return 0
 
+    if arr == None:
+        return [False, False, False, False]
+
     if len(arr) == 0 or len(arr) == 1:
         return [True, True, True, True]
 
@@ -64,5 +67,27 @@ def check_monotonic_sequence(arr):
     return ups + downs
 
 
-def check_monotonic_sequence_inverse(a, b, c, d):
-    None
+def check_monotonic_sequence_inverse(bools):
+    #Up strong
+    up_strong = [1, 2, 3, 4] # T T F F
+    up_weak = [1, 1, 2, 3] # T F F F
+
+    down_strong = [4, 3, 2, 1] # F F T T
+    down_weak = [4, 3, 3, 2] # F F T F
+
+    constant = [1, 1, 1, 1] # T F T F
+
+    if bools == [True, True, False, False]:
+        return up_strong
+    elif bools == [True, False, False, False]:
+        return up_weak
+    elif bools == [False, False, True, True]:
+        return down_strong
+    elif bools == [False, False, True, False]:
+        return down_weak
+    elif bools == [True, False, True, False]:
+        return constant
+    elif bools == [True, True, True, True]:
+        return [1]
+    else:
+        return None
