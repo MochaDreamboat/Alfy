@@ -1,4 +1,7 @@
 
+from cgi import test
+
+
 def input_list():
 
     nums = []
@@ -91,3 +94,74 @@ def check_monotonic_sequence_inverse(bools):
         return [1]
     else:
         return None
+
+# Helper for primes generator
+def factorial(x):
+        if x == 1 or x == 0:
+            return 1
+        else:
+            return x * (factorial(x - 1))
+
+def primes_generator(n):
+    primes_list = []
+
+    current = 1
+    
+    # n is prime iff ( (n - 1)! + 1 ) % n == 0
+    while len(primes_list) != n:
+        current += 1
+        mod = factorial(current - 1) + 1
+        if mod % current == 0:
+            primes_list.append(current)
+        else:
+            continue
+    
+    return primes_list
+
+# Helpers for vectors_list_sum
+def is_empty_vector(vec_lst):
+    for vec in vec_lst:
+        if len(vec) == 0:
+            return False
+        else:
+            return True
+
+def sum_of_two_vectors(a, b):
+    vec_sum = []
+    for i in range(len(a)):
+        vec_sum.append(a[i] + b[i])
+    return vec_sum
+
+def vectors_list_sum(vec_lst):
+    if is_empty_vector(vec_lst) == False:
+        return None
+
+    for i in range(len(vec_lst) - 2):
+        if len(vec_lst[i]) != len(vec_lst[i+1]):
+            return None
+    
+    while len(vec_lst) != 1:
+        vec_lst[0] = sum_of_two_vectors(vec_lst[0], vec_lst[1])
+        vec_lst.pop(1)
+    
+    return vec_lst[0]
+
+# Helper for orthogonal_number()
+def calc_the_inner_product(vec_1, vec_2):
+    inner_product = 0
+
+    for i in range(len(vec_1)):
+        inner_product += vec_1[i] * vec_2[i]
+    
+    return inner_product
+
+    
+
+def orthogonal_number(vectors):
+    orthogonal_count = 0
+    for i in range(len(vectors)):
+        for j in range(i+1, len(vectors)):
+            if calc_the_inner_product(vectors[i], vectors[j]) == 0:
+                orthogonal_count += 1
+    
+    return orthogonal_count
