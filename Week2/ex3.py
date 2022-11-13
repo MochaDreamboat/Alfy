@@ -1,7 +1,3 @@
-
-from cgi import test
-
-
 def input_list():
 
     nums = []
