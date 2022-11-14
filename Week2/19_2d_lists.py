@@ -8,4 +8,3 @@ number_grid = [
 
 print(number_grid[0][0]) # 1
 print(number_grid[2][1]) # 8
-
