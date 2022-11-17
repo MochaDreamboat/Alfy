@@ -10,7 +10,7 @@ class Player:
     points = 0
     choice = 0
 
-    def __init__(self, name, s):
+    def __init__(self, name):
         self.name = name
 
     def add_point():
