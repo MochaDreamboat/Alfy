@@ -31,7 +31,7 @@ def validate_choice(selection):
 
     if selection not in choices:
         print('Please pick a valid selection. Rock (r), paper (p) or scissors (s)!')
-        False
+        return False
     
     return True
 
@@ -49,5 +49,7 @@ def determine_round(player1, player2):
 def display_points(p1, p2):
     return f'{p1.name} - {p1.points} / {p2.name} - {p2.points}'
 
-
-
+def check_win(score, score_to_win):
+    if score == score_to_win:
+        return True
+    return False
