@@ -16,8 +16,13 @@ class Player:
     def add_point():
         points += 1
 
-def input_choice(player):
-    choice = input('Rock, paper, or scissors?')
+def make_selection(player):
+    choice = input(f'{player.name}, Rock, paper, or scissors?')
+
+    if validate_choice(choice) == False:
+        print('Please pick a valid selection. Rock (r), paper (p) or scissors (s)!')
+        return make_selection(player)
+
     return choice
 
 # Used during AI games. Randomly picks among r, p, or s.
@@ -30,7 +35,6 @@ def validate_choice(selection):
     choices = 'RrPpSs'
 
     if selection not in choices:
-        print('Please pick a valid selection. Rock (r), paper (p) or scissors (s)!')
         return False
     
     return True
