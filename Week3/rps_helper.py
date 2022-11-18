@@ -31,7 +31,7 @@ def make_selection(player):
         print('Please pick a valid selection. Rock (r), paper (p) or scissors (s)!')
         return make_selection(player)
 
-    return choice
+    return choice.lower()
 
 # Used during AI games. Randomly picks among r, p, or s.
 def randomize_choice():
