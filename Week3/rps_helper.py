@@ -7,14 +7,17 @@ win_conditions = {
 }
 
 class Player:
-    points = 0
-    choice = 0
-
     def __init__(self, name):
         self.name = name
+        self.points = 0
+        self.wins = 0
+        self.choice = ''
 
-    def add_point():
-        points += 1
+    def add_point(player):
+        player.points += 1
+
+    def reset_points(player):
+        player.points = 0
 
 def make_selection(player):
     choice = input(f'{player.name}, Rock, paper, or scissors?')
@@ -43,15 +46,16 @@ def validate_choice(selection):
 # Match with appropriate condition object.
 def determine_round(player1, player2):
     if player1.choice == player2.choice:
+        print('Tie!')
         return None
 
-    winner = player1 if f'{player1.choice}{player2.choice}' in win_conditions else player2
+    winner = player1 if f'{player1.choice}{player2.choice}' in win_conditions.keys() else player2
 
     winner.add_point()
     print(f'{winner.name} wins this one!')
 
 def display_points(p1, p2):
-    return f'{p1.name} - {p1.points} / {p2.name} - {p2.points}'
+    print(f'{p1.name} - {p1.points} / {p2.name} - {p2.points}')
 
 def check_win(score, score_to_win):
     if score == score_to_win:
