@@ -1,6 +1,6 @@
 import random
 
-win_conditions = {
+WIN_CONDITIONS = {
     'rs': 1,
     'sp': 1,
     'pr': 1,
@@ -54,7 +54,7 @@ def determine_round(player1, player2):
         print('Tie!')
         return None
 
-    winner = player1 if f'{player1.choice}{player2.choice}' in win_conditions.keys() else player2
+    winner = player1 if f'{player1.choice}{player2.choice}' in WIN_CONDITIONS.keys() else player2
 
     winner.add_point()
     print(f'{winner.name} wins this one!')
