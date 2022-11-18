@@ -2,21 +2,22 @@ from rps_helper import *
 
 def main():
 
-    option = input('Welcome to Rock, Paper, Scissors!\n One or two players?: ')
+    option = input('Welcome to Rock, Paper, Scissors!\nOne or two players?: ')
     game_over = False
     player1 = Player(input('Player One, select your name: '))
 
-    if option == 1:
+    if option == '1':
         player2 = Player('Computer')
     else:
         player2 = Player(input('Player Two, select your name: '))
     
 
     while game_over == False:
-        p1_choice = input(f'Player One...rock, paper, or scissors?: ' )
+        player1.choice = make_selection(player1)
+        player2.choice = make_selection(player2) if option == '2' else randomize_choice()
 
-        if validate_choice(p1_choice) == False:
-            continue
+        determine_round(player1, player2)
 
-        if option == 1:
-            p2_choice = randomize_choice()
+        display_points(player1, player2)
+
+main()
