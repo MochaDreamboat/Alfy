@@ -1,4 +1,4 @@
-from rps_helper import *
+from rock_paper_scissors_helper import *
 
 def main():
 
