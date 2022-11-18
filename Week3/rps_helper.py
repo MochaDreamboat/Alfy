@@ -12,14 +12,10 @@ class Player:
     def __init__(self, name):
         self.name = name
         self.points = 0
-        self.wins = 0
         self.choice = ''
 
     def add_point(player):
         player.points += 1
-
-    def add_wins(player):
-        player.wins += 1
 
     def reset_points(player):
         player.points = 0
@@ -69,3 +65,10 @@ def check_win(player1, player2):
             print(f'{player.name} wins!')
             return True
     return False
+
+# Wraps input fn's and exits program if it receives '!'.
+def check_input(message):
+    val = input(message)
+    if val == '!':
+        exit()
+    return val
