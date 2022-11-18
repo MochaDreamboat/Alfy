@@ -17,7 +17,9 @@ def main():
         player2.choice = make_selection(player2) if option == '2' else randomize_choice()
 
         determine_round(player1, player2)
-
+        game_over = check_win(player1, player2)
         display_points(player1, player2)
+    
+    print('Want to play another round?')
 
 main()

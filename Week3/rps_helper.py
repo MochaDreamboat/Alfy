@@ -6,6 +6,8 @@ win_conditions = {
     'pr': 1,
 }
 
+POINTS_TO_WIN = 3
+
 class Player:
     def __init__(self, name):
         self.name = name
@@ -15,6 +17,9 @@ class Player:
 
     def add_point(player):
         player.points += 1
+
+    def add_wins(player):
+        player.wins += 1
 
     def reset_points(player):
         player.points = 0
@@ -57,7 +62,10 @@ def determine_round(player1, player2):
 def display_points(p1, p2):
     print(f'{p1.name} - {p1.points} / {p2.name} - {p2.points}')
 
-def check_win(score, score_to_win):
-    if score == score_to_win:
-        return True
+def check_win(player1, player2):
+    for player in [player1, player2]:
+        if player.points == POINTS_TO_WIN:
+
+            print(f'{player.name} wins!')
+            return True
     return False
