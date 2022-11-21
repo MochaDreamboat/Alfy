@@ -12,9 +12,9 @@ def divide_channels(image):
 '''
 Dimensions of channel list
 [
-  channel [row - [column1-value, column2-value, etc.]]
-  channel []
-  channel []
+  channel [row0 - [column0-value, column1-value, etc.]]
+  channel [row1 - [column1-value, column1-value, etc.]]
+  channel [row2 - [column1-value, column1-value, etc.]]
 ]
 '''
 def merge_channels(image):
@@ -58,3 +58,42 @@ def from_rgb_to_gray(image):
       image_to_gray[i][j] = round(sum(image_to_gray[i][j]))
 
   return image_to_gray
+
+def blur(size):
+  cell_val = 1/(size**2)
+  return [ [cell_val for i in range(size)] for i in range(size) ]
+
+
+def add_kernel(image, kernel):
+  image_to_edit = copy.deepcopy(image)
+  kernel_side = len(kernel)
+  kernel_center = round((len(kernel) / 2))
+  print(kernel_center)
+  # Abbreviated as 'wk' in following variables
+
+  for i in range(len(image_to_edit)):
+    for j in range(len(image_to_edit[i])):
+      working_kernel = copy.deepcopy(kernel)
+      for x in range(kernel_side):
+        for y in range(kernel_side):
+          try:
+            pixel_x_coord = i + (kernel_center - x)
+            pixel_y_coord = j + (kernel_center - y)
+            if pixel_x_coord < 0 or pixel_y_coord < 0:
+              working_kernel[x][y] *= image[i][j]
+            else:
+              working_kernel[x][y] *= image[pixel_y_coord][pixel_x_coord]
+          except:
+            working_kernel[x][y] *= image[i][j]
+
+      for z in range(kernel_side):
+        new_value = sum(working_kernel[z])
+        working_kernel[z] = new_value
+
+      image_to_edit[i][j] = sum(working_kernel)
+  
+  return image_to_edit
+
+blur_kernel = [[1 / 9, 1 / 9, 1 / 9], [1 / 9, 1 / 9, 1 / 9], [1 / 9, 1 / 9, 1 / 9]]
+
+print(add_kernel([[0, 128, 255]], blur_kernel))
