@@ -91,3 +91,5 @@ def add_kernel(image, kernel):
       image_to_edit[i][j] = sum(working_kernel)
   
   return image_to_edit
+
+##########################
