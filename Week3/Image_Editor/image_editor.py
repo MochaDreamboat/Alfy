@@ -67,33 +67,27 @@ def blur(size):
 def add_kernel(image, kernel):
   image_to_edit = copy.deepcopy(image)
   kernel_side = len(kernel)
-  kernel_center = round((len(kernel) / 2))
-  print(kernel_center)
-  # Abbreviated as 'wk' in following variables
+  kernel_center = round((len(kernel) / 2)) - 1
 
   for i in range(len(image_to_edit)):
     for j in range(len(image_to_edit[i])):
       working_kernel = copy.deepcopy(kernel)
-      for x in range(kernel_side):
-        for y in range(kernel_side):
+      for k in range(kernel_side):
+        for l in range(kernel_side):
           try:
-            pixel_x_coord = i + (kernel_center - x)
-            pixel_y_coord = j + (kernel_center - y)
+            pixel_y_coord = i - (kernel_center - k)
+            pixel_x_coord = j - (kernel_center - l)
             if pixel_x_coord < 0 or pixel_y_coord < 0:
-              working_kernel[x][y] *= image[i][j]
+              working_kernel[k][l] *= image[i][j]
             else:
-              working_kernel[x][y] *= image[pixel_y_coord][pixel_x_coord]
+              working_kernel[k][l] *= image[pixel_y_coord][pixel_x_coord]
           except:
-            working_kernel[x][y] *= image[i][j]
+            working_kernel[k][l] *= image[i][j]
 
       for z in range(kernel_side):
-        new_value = sum(working_kernel[z])
+        new_value = round(sum(working_kernel[z]))
         working_kernel[z] = new_value
 
       image_to_edit[i][j] = sum(working_kernel)
   
   return image_to_edit
-
-blur_kernel = [[1 / 9, 1 / 9, 1 / 9], [1 / 9, 1 / 9, 1 / 9], [1 / 9, 1 / 9, 1 / 9]]
-
-print(add_kernel([[0, 128, 255]], blur_kernel))
