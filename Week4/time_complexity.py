@@ -31,11 +31,7 @@ def func(L):
 # 3
 """
 (Assuming log base is 2...)
-Time complexity is O(n(logn)). Top loop complexity determined by how many times
-2 can divide into j before it is floored to 0 (2^x = n => log n = x).
-
-Second loop's complexity is determined by the size of n. The bigger it is, the longer
-it will take (linearly by addition and subtraction) for j to equal / exceed n.
+Time complexity is O(log(n)). Top loop will divide until condition j > 0 is False.
 """
 def func(n):
 		j = n
@@ -88,7 +84,7 @@ def func(n):
 
 # 7
 """
-O(n). List size is linear
+O(n^2). Each iteration will undergo a loop that will iterate until j is equal to or greater than n.
 """
 
 def func(n):
