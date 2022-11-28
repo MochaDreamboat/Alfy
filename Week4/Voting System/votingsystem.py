@@ -18,10 +18,6 @@ def file_loader(path, file_type):
 
             for vote in voting_reader:
                 voting_data[f'vote_{len(voting_data)}'] = vote
-
-            print(voting_data['vote_1'])
-
-            return voting_data
             
     return voting_data
 
