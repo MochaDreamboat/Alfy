@@ -38,9 +38,7 @@ def plurality(votes):
         tally[preferences[int(votes[voter][0])-1]] += 1
 
     preferences = sorted(preferences, key=lambda preference: tally[preference], reverse=True)
-    
+
     return {
         f'{i+1}': preferences[i] for i in range(len(preferences))
     }
-
-print(plurality(file_loader('./votes/abc_True.csv', 'csv')))
